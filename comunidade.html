@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Comunidade · Rota dos Quilombos</title>
+  <meta name="description" content="Comunidade quilombola da Rota dos Quilombos do Médio Jequitinhonha." id="pageDesc" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">Rota dos <em>Quilombos</em></span>
+        <span class="brand__tagline">Médio Jequitinhonha · MG</span>
+      </a>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html#comunidades" class="nav__link">Comunidades</a></li>
+          <li><a href="roteiros.html" class="nav__link">Roteiros</a></li>
+          <li><a href="index.html#saberes" class="nav__link">Saberes</a></li>
+          <li><a href="index.html#para-quem" class="nav__link">Para Empresas</a></li>
+          <li><a href="index.html#contato" class="nav__link">Contato</a></li>
+        </ul>
+        <div class="lang">
+          <span class="lang__option lang__option--active">PT</span>
+          <span class="lang__divider">|</span>
+          <span class="lang__option">EN</span>
+        </div>
+      </nav>
+
+      <div class="header__cta">
+        <button class="btn btn--gold" id="headerCotar" data-cotacao data-context="visita à Rota">Cotar Visita</button>
+        <button class="menu-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="comunidadeRoot">
+    <!-- Renderizado via JS abaixo -->
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="padding-top:0; border-top:none;">
+        <span>© 2026 Rota dos Quilombos · Nzinga Turismo</span>
+        <a href="index.html" style="color: var(--dourado-fosco); font-size: 0.85rem;">← Voltar para a Rota</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/comunidades.js"></script>
+  <script>
+    (function () {
+      const root = document.getElementById('comunidadeRoot');
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      const c = window.COMUNIDADES && window.COMUNIDADES[slug];
+
+      if (!c) {
+        root.innerHTML = `
+          <section class="page-hero">
+            <div class="page-hero__bg" style="background:linear-gradient(135deg,#1A1612,#0E0E0E);"></div>
+            <div class="container page-hero__content">
+              <p class="breadcrumb"><a href="index.html">Início</a> · Comunidade não encontrada</p>
+              <h1 class="page-hero__title">Comunidade não encontrada</h1>
+              <p class="page-hero__subtitle">O endereço não corresponde a nenhuma das doze comunidades da Rota.</p>
+            </div>
+          </section>
+          <section class="section section--osso">
+            <div class="container" style="text-align:center;">
+              <a href="index.html#comunidades" class="btn btn--outline">← Ver as 12 comunidades</a>
+            </div>
+          </section>
+        `;
+        return;
+      }
+
+      // Atualiza title e meta
+      document.getElementById('pageTitle').textContent = `${c.nome} · Rota dos Quilombos`;
+      document.getElementById('pageDesc').setAttribute('content', `${c.nome}, comunidade quilombola em ${c.municipio}. ${c.saber}.`);
+
+      // Renderiza
+      const expHTML = (c.experiencias || []).map((e, i) => `
+        <li>
+          <span class="feature-list__num">${String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <p class="feature-list__title">${e.titulo}</p>
+            <p class="feature-list__text">${e.descricao}</p>
+          </div>
+        </li>
+      `).join('');
+
+      const produtosHTML = (c.produtos && c.produtos.length) ? `
+        <section class="section section--osso produtos-comunidade-section">
+          <div class="container">
+            <div class="comunidades__header fade-in" style="max-width: 720px;">
+              <span class="eyebrow">Produtos da comunidade</span>
+              <h2 class="section-title">Saberes que se levam<br /><em>pra casa.</em></h2>
+              <p class="section-subtitle">Cada peça é feita à mão por artesãs e artesãos de ${c.nome}. Solicite cotação para verificar disponibilidade, prazos e formas de envio.</p>
+            </div>
+
+            <div class="produtos-comunidade-grid stagger">
+              ${c.produtos.map((p) => `
+                <article class="produto-comunidade">
+                  <div class="produto-comunidade__image">
+                    <img src="${p.img}" alt="${p.nome}" loading="lazy" />
+                  </div>
+                  <div class="produto-comunidade__body">
+                    <h3 class="produto-comunidade__name">${p.nome}</h3>
+                    <p class="produto-comunidade__desc">${p.descricao}</p>
+                    <div class="produto-comunidade__processo">
+                      <span class="produto-comunidade__processo-label">Como é feito</span>
+                      <p>${p.comoEFeito}</p>
+                    </div>
+                    <div class="produto-comunidade__footer">
+                      <span class="produto-comunidade__preco">${p.preco}</span>
+                      <button class="btn btn--gold" data-cotacao
+                        data-context="produto"
+                        data-item="${p.nome} — ${c.nome}"
+                        data-eyebrow="Cotar Produto"
+                        data-title="${p.nome}"
+                        data-subtitle="Produzido em ${c.nome} (${c.municipio}). Feito sob encomenda — solicite cotação para prazos.">Cotar via WhatsApp</button>
+                    </div>
+                  </div>
+                </article>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+      ` : '';
+
+      const cantoHTML = c.canto ? `
+        <section class="section section--escuro">
+          <div class="container container--narrow" style="text-align:center;">
+            <span class="eyebrow eyebrow--light">Saber tradicional</span>
+            <h2 class="section-title" style="color: var(--branco-osso);">O canto que <em style="color: var(--dourado-fosco);">atravessa o tempo.</em></h2>
+            <blockquote style="font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.5; color: var(--dourado-claro); margin-top: var(--space-6); padding: var(--space-6) var(--space-8); border-left: 3px solid var(--dourado-fosco); background: rgba(176,93,62,0.1); border-radius: 0 4px 4px 0;">
+              ${c.canto}
+              <small style="display:block; margin-top: var(--space-4); font-style: normal; font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,239,230,0.5);">${c.cantoLegenda || ''}</small>
+            </blockquote>
+          </div>
+        </section>
+      ` : '';
+
+      const cv = c.comoVisitar || {};
+
+      root.innerHTML = `
+        <section class="page-hero">
+          <div class="page-hero__bg">
+            <img src="${c.img}" alt="${c.nome}" />
+          </div>
+          <div class="container page-hero__content">
+            <p class="breadcrumb"><a href="index.html">Início</a> · <a href="index.html#comunidades">Comunidades</a> · ${c.municipio}</p>
+            <h1 class="page-hero__title">${c.nome}</h1>
+            <p class="page-hero__subtitle">${c.subtitulo || c.saber}</p>
+          </div>
+        </section>
+
+        <section class="section section--osso">
+          <div class="container two-col">
+            <div class="fade-in">
+              <span class="eyebrow">A Comunidade</span>
+              <h2 class="section-title">${c.nome}</h2>
+              <p style="font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--terracota); margin-bottom: var(--space-5);">${c.saber}</p>
+              <div class="prose">
+                <p>${c.historia || c.texto}</p>
+                ${c.certificacao ? `<p><strong>Certificação:</strong> ${c.certificacao}</p>` : ''}
+              </div>
+            </div>
+            <div class="manifesto__image fade-in">
+              <img src="${c.img}" alt="${c.saber}" loading="lazy" />
+              <div class="manifesto__image-caption">${c.tag}</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--escuro">
+          <div class="container">
+            <div class="comunidades__header fade-in" style="max-width: 680px;">
+              <span class="eyebrow eyebrow--light">Quem segura o saber</span>
+              <h2 class="comunidades__title">Mestres e <em>Mestras.</em></h2>
+            </div>
+
+            <div class="mestres-grid stagger" style="margin-top: var(--space-8);">
+              <div class="mestre-card">
+                <div class="mestre-card__photo">
+                  <div class="mestre-card__silhouette"></div>
+                  <span class="mestre-card__placeholder">Foto a confirmar</span>
+                </div>
+                <h3 class="mestre-card__name">${c.mestre || '—'}</h3>
+                <p class="mestre-card__role">${c.mestreRole || c.saber}</p>
+              </div>
+              <div class="mestre-card">
+                <div class="mestre-card__photo">
+                  <div class="mestre-card__silhouette"></div>
+                  <span class="mestre-card__placeholder">Foto a confirmar</span>
+                </div>
+                <h3 class="mestre-card__name">Receptivo Familiar</h3>
+                <p class="mestre-card__role">${c.receptivo || 'Casas da comunidade'}</p>
+              </div>
+              <div class="mestre-card">
+                <div class="mestre-card__photo">
+                  <div class="mestre-card__silhouette"></div>
+                  <span class="mestre-card__placeholder">Acervo a confirmar</span>
+                </div>
+                <h3 class="mestre-card__name">Comunidade ${c.nome}</h3>
+                <p class="mestre-card__role">REDETUR · ${c.municipio}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        ${expHTML ? `
+        <section class="section section--osso">
+          <div class="container two-col">
+            <div class="manifesto__image fade-in">
+              <img src="${c.img}" alt="${c.saber}" loading="lazy" />
+            </div>
+            <div class="fade-in">
+              <span class="eyebrow">A Vivência</span>
+              <h2 class="section-title">O que se vive<br /><em>em ${c.nome}.</em></h2>
+              <ul class="feature-list">${expHTML}</ul>
+            </div>
+          </div>
+        </section>
+        ` : ''}
+
+        ${produtosHTML}
+
+        ${cantoHTML}
+
+        <section class="section section--osso">
+          <div class="container">
+            <div class="comunidades__header fade-in" style="text-align:left; max-width: 720px;">
+              <span class="eyebrow">Como visitar</span>
+              <h2 class="section-title">Logística do <em>caminho.</em></h2>
+            </div>
+
+            <div class="para-quem__grid stagger" style="margin-top: var(--space-8);">
+              <article class="publico-card" style="border-color: rgba(14,14,14,0.1); background: rgba(14,14,14,0.02);">
+                <h3 class="publico-card__title" style="color: var(--preto-profundo);">Como chegar</h3>
+                <p class="publico-card__text" style="color: var(--cinza-suave);">${cv.chegar || 'Acesso pela cidade-sede do município. Transporte combinado pela operadora Nzinga.'}</p>
+              </article>
+              <article class="publico-card" style="border-color: rgba(14,14,14,0.1); background: rgba(14,14,14,0.02);">
+                <h3 class="publico-card__title" style="color: var(--preto-profundo);">Hospedagem</h3>
+                <p class="publico-card__text" style="color: var(--cinza-suave);">${cv.hospedagem || 'Receptivo familiar na comunidade ou pousadas na cidade-sede.'}</p>
+              </article>
+              <article class="publico-card" style="border-color: rgba(14,14,14,0.1); background: rgba(14,14,14,0.02);">
+                <h3 class="publico-card__title" style="color: var(--preto-profundo);">Melhor época</h3>
+                <p class="publico-card__text" style="color: var(--cinza-suave);">${cv.melhorEpoca || 'A partir de março, paisagem verde pós-chuvas.'}</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta-final" id="cotacao">
+          <div class="container cta-final__inner fade-in">
+            <h2 class="cta-final__title">Cotar visita a <em>${c.nome}.</em></h2>
+            <p class="cta-final__subtitle">Vivência guiada por Agente Local de Turismo. Grupos pequenos, agendamento prévio.</p>
+            <button class="btn btn--gold btn--large btn--icon" data-cotacao
+              data-context="visita a ${c.nome}"
+              data-item="${c.nome} — ${c.municipio}"
+              data-eyebrow="Cotar Visita"
+              data-title="Cotar visita a <em>${c.nome}</em>"
+              data-subtitle="Vivência guiada por Agente Local. Conte como você quer viver.">Iniciar Cotação</button>
+          </div>
+        </section>
+      `;
+
+      // Atualiza o botão do header com contexto
+      const headerCTA = document.getElementById('headerCotar');
+      if (headerCTA) {
+        headerCTA.dataset.context = `visita a ${c.nome}`;
+        headerCTA.dataset.item = `${c.nome} — ${c.municipio}`;
+        headerCTA.dataset.title = `Cotar visita a <em>${c.nome}</em>`;
+      }
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
