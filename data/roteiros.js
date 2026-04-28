@@ -14,7 +14,7 @@ window.ROTEIROS = {
     comunidades: ['Roça Grande'],
     preco: 'A partir de R$ 280',
     precoNum: 280,
-    img: 'assets/img/tear-algodao.png',
+    img: 'assets/img/roteiro-vivencia-algodao.png',
     subtitulo: 'Da rama crua ao fio fiado em três séculos.',
     descricao: 'Uma jornada de um dia inteiro pelo saber mais antigo da Rota — o tear de algodão de Roça Grande. Você acompanha o processo desde a colheita até a tecelagem, almoça com a mestra Natalina Soares e ouve os cantos de tecelagem que organizaram o trabalho de gerações de mulheres pretas no Vale.',
     itinerario: [
@@ -49,7 +49,7 @@ window.ROTEIROS = {
     comunidades: ['Roça Grande', 'Caititu do Meio', 'Vila Santo Isidoro'],
     preco: 'A partir de R$ 720',
     precoNum: 720,
-    img: 'assets/img/aldeia-quilombola.png',
+    img: 'assets/img/roteiro-berilo-ancestral.png',
     subtitulo: 'Tear, congado e religiosidade nas três comunidades.',
     descricao: 'Imersão de dois dias pelas três comunidades quilombolas certificadas de Berilo — Roça Grande (tear), Caititu do Meio (religiosidade sincrética) e Vila Santo Isidoro (congado). Receptivo familiar, gastronomia tradicional e um cortejo de congado privativo.',
     itinerario: [
@@ -85,7 +85,7 @@ window.ROTEIROS = {
     comunidades: ['Caititu do Meio', 'Vila Santo Isidoro', 'Chapada do Norte'],
     preco: 'A partir de R$ 690',
     precoNum: 690,
-    img: 'assets/img/tambor-congado.png',
+    img: 'assets/img/roteiro-tamborzeiros.png',
     subtitulo: 'Tambores, fitas e cortejo de matriz africana.',
     descricao: 'Dois dias dedicados ao congado e à religiosidade afro-mineira. Acompanhe os Tamborzeiros do Rosário em ensaio aberto, conheça a tradição da Festa de N. Sra. do Rosário (Patrimônio IEPHA-MG) e experimente o batuque que organiza fé, festa e território há dois séculos.',
     itinerario: [
@@ -120,7 +120,7 @@ window.ROTEIROS = {
     comunidades: ['Gravatá – Quebra Bateia', 'Moça Santa'],
     preco: 'A partir de R$ 320',
     precoNum: 320,
-    img: 'assets/img/cestaria-palha-milho.png',
+    img: 'assets/img/roteiro-palha-barro.png',
     subtitulo: 'Cestaria com Aneli e cerâmica com Maria Joana.',
     descricao: 'Um dia inteiro nas duas comunidades de Chapada do Norte que mantêm vivas as tradições do trançado e da cerâmica. Pela manhã, oficina de palha de milho com Aneli Pereira (ARCA). À tarde, oficina de barro na Casa de Dona Saninina, em Caetés.',
     itinerario: [
@@ -154,7 +154,7 @@ window.ROTEIROS = {
     comunidades: ['Córrego do Rocha'],
     preco: 'A partir de R$ 260',
     precoNum: 260,
-    img: 'assets/img/quitandas.png',
+    img: 'assets/img/roteiro-mesa-quilombola.png',
     subtitulo: 'Café da tarde com cantos de fiandeira.',
     descricao: 'Um dia na Casa da Cida, em Córrego do Rocha. Acompanhe a fiação do algodão na roca, almoce em torno da mesa coletiva e fique pro café da tarde com quitandas saídas do fogão a lenha. As fiandeiras vão te ensinar os cantos antigos enquanto trabalham.',
     itinerario: [
@@ -187,7 +187,7 @@ window.ROTEIROS = {
     comunidades: ['Quilombo / São Pedro do Alagadiço', 'Santiago'],
     preco: 'A partir de R$ 680',
     precoNum: 680,
-    img: 'assets/img/tambor-congado.png',
+    img: 'assets/img/roteiro-marujada.png',
     subtitulo: 'Flauta, violão, tambor e oração cantada.',
     descricao: 'Dois dias no Núcleo Alagadiço de Minas Novas. Conheça a Marujada União de Ribeirão da Folha, com Sr. Marciano e Dona Beota, e termine em Santiago, onde Maria dos Anjos te recebe com café da tarde e doces caseiros saídos do fogão a lenha.',
     itinerario: [
@@ -223,7 +223,7 @@ window.ROTEIROS = {
     comunidades: ['Macuco', 'Pinheiro', 'Mata Dois'],
     preco: 'A partir de R$ 690',
     precoNum: 690,
-    img: 'assets/img/estrada-terra-vermelha.png',
+    img: 'assets/img/roteiro-macuco.png',
     subtitulo: 'O núcleo originário, três comunidades, um saber.',
     descricao: 'Macuco foi um dos três quilombos originários (junto com Bandeirinha e Bandeira Grande) que deram origem à região no século XVIII. Hoje, junto com Pinheiro e Mata Dois, forma um núcleo unificado. Este roteiro te leva à raiz histórica da Rota — receptivo familiar, contação de causos e trilha pelo cerrado em transição com a caatinga.',
     itinerario: [
@@ -258,7 +258,7 @@ window.ROTEIROS = {
     comunidades: ['Chapada do Norte (cidade)', 'Comunidades quilombolas locais'],
     preco: 'A partir de R$ 1.450',
     precoNum: 1450,
-    img: 'assets/img/igreja-barroca.png',
+    img: 'assets/img/roteiro-festa-rosario.png',
     subtitulo: 'Patrimônio Imaterial de Minas Gerais · 200 anos.',
     destaque: 'Patrimônio IEPHA-MG (2013)',
     descricao: 'A Festa de Nossa Senhora do Rosário dos Homens Pretos de Chapada do Norte é a única celebração religiosa de Minas Gerais reconhecida como Patrimônio Cultural Imaterial. Acontece desde 1822. Este é um roteiro de imersão TOTAL na festa — você acompanha desde as novenas até o Reinado, com acesso garantido aos rituais e contato direto com a Irmandade do Rosário.',
@@ -293,7 +293,7 @@ window.ROTEIROS = {
     comunidades: ['As 12 comunidades'],
     preco: 'A partir de R$ 2.890',
     precoNum: 2890,
-    img: 'assets/img/hero-cerrado-jequitinhonha.png',
+    img: 'assets/img/roteiro-rota-completa.png',
     subtitulo: 'Imersão total. As 12 comunidades. O Vale inteiro.',
     descricao: 'Cinco dias de imersão profunda pela Rota dos Quilombos completa. Você atravessa Berilo, Chapada do Norte e Minas Novas, conhece todas as 12 comunidades certificadas, vive cada um dos seis saberes-âncora e termina com uma visão panorâmica do que é hoje a maior rede de turismo de base comunitária quilombola de Minas Gerais.',
     itinerario: [
@@ -330,7 +330,7 @@ window.ROTEIROS = {
     comunidades: ['A definir conforme escola/projeto'],
     preco: 'Sob orçamento · grupos B2B',
     precoNum: 0,
-    img: 'assets/img/aldeia-quilombola.png',
+    img: 'assets/img/roteiro-pedagogica.png',
     subtitulo: 'Pra escolas, universidades e empresas com pauta ESG.',
     descricao: 'Roteiro customizável pra grupos institucionais. Material didático pré-aprovado, contrapartida ESG documentada, certificado de participação pra estudantes. Acessível a partir de 10 pessoas, com agendamento mínimo de 30 dias. A Nzinga monta o roteiro junto com a coordenação pedagógica da sua instituição.',
     itinerario: [
