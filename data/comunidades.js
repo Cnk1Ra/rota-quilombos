@@ -42,21 +42,21 @@ window.COMUNIDADES = {
         descricao: 'Algodão crioulo plantado, colhido e fiado pela própria comunidade.',
         comoEFeito: 'O algodão é plantado no quintal, colhido com varas, descaroçado, fiado em rocas de pedal e tecido em teares de madeira como há três séculos. Cada peça leva entre 5 e 15 dias.',
         preco: 'A partir de R$ 80',
-        img: 'assets/img/tear-algodao.png'
+        img: 'assets/img/produto-pano-algodao.png'
       },
       {
         nome: 'Rede de algodão',
         descricao: 'Rede tradicional do tear de pé, com fios de algodão crioulo.',
         comoEFeito: 'Tecida em tear de pé com fios crus do algodão da roça, em padrão tramado tradicional do Vale. Acabamento das pontas costurado à mão. Tempo de produção: 20-30 dias.',
         preco: 'A partir de R$ 350',
-        img: 'assets/img/tear-algodao.png'
+        img: 'assets/img/comunidade-roca-grande.png'
       },
       {
         nome: 'Toalha bordada',
         descricao: 'Tecida no tear e bordada manualmente com pontos tradicionais.',
         comoEFeito: 'Base tecida no tear horizontal e bordada manualmente pelas mestras com pontos quilombolas — flores, folhas e motivos do cerrado. Cada toalha é única.',
         preco: 'A partir de R$ 60',
-        img: 'assets/img/tear-algodao.png'
+        img: 'assets/img/apoio-detalhe-oficio.png'
       }
     ]
   },
@@ -91,14 +91,14 @@ window.COMUNIDADES = {
         descricao: 'Contas de sementes nativas e madeira do cerrado.',
         comoEFeito: 'Sementes coletadas de árvores do território (jequitibá, paineira), perfuradas à mão e montadas com fios encerados. Crucifixo entalhado em madeira local. Cada terço carrega a oração da comunidade.',
         preco: 'A partir de R$ 45',
-        img: 'assets/img/igreja-barroca.png'
+        img: 'assets/img/comunidade-caititu-do-meio.png'
       },
       {
         nome: 'Bandeira de festa',
         descricao: 'Bandeira religiosa em algodão tingido com pigmentos naturais.',
         comoEFeito: 'Tecido de algodão pintado à mão pelas mulheres da comunidade com pigmentos extraídos de cascas, sementes e raízes do cerrado. Costurada em uma única peça.',
         preco: 'Sob encomenda',
-        img: 'assets/img/igreja-barroca.png'
+        img: 'assets/img/roteiro-festa-rosario.png'
       }
     ]
   },
@@ -133,14 +133,14 @@ window.COMUNIDADES = {
         descricao: 'Tambor entalhado em madeira local com couro curtido.',
         comoEFeito: 'Tronco de cedro do cerrado oco e moldado, couro de boi curtido pela comunidade, lacração com cordas de algodão tencionadas. Cada tambor leva 1 mês para ficar pronto e é afinado pelo mestre.',
         preco: 'A partir de R$ 480',
-        img: 'assets/img/tambor-congado.png'
+        img: 'assets/img/comunidade-vila-santo-isidoro.png'
       },
       {
         nome: 'Fita do Reinado',
         descricao: 'Fitas de cetim costuradas em camadas, motivos da festa.',
         comoEFeito: 'Fitas longas costuradas à mão pelas mulheres da congada, em camadas, com cores e motivos específicos do Reinado do Rosário. Cada cor carrega significado simbólico.',
         preco: 'A partir de R$ 35',
-        img: 'assets/img/tambor-congado.png'
+        img: 'assets/img/roteiro-tamborzeiros.png'
       }
     ]
   },
@@ -177,14 +177,14 @@ window.COMUNIDADES = {
         descricao: 'Trançado tradicional, padrão espiral.',
         comoEFeito: 'A palha vem da roça da própria comunidade — colhida no fim da safra, seca ao sol por 5 dias e umedecida na hora do trabalho. O trançado é feito à mão, sem cola, em padrão espiral. Cada cesto leva 2-3 dias.',
         preco: 'A partir de R$ 65',
-        img: 'assets/img/cestaria-palha-milho.png'
+        img: 'assets/img/produto-cesto-palha.png'
       },
       {
         nome: 'Esteira de palha',
         descricao: 'Trançado em camadas duplas, palha selecionada.',
         comoEFeito: 'Palha de milho longa e fina, trançada em camadas duplas para resistência e flexibilidade. As pontas são fechadas com fio de algodão. Tempo de produção: 3-4 dias por peça.',
         preco: 'A partir de R$ 180',
-        img: 'assets/img/cestaria-palha-milho.png'
+        img: 'assets/img/comunidade-gravata.png'
       }
     ]
   },
@@ -219,14 +219,14 @@ window.COMUNIDADES = {
         descricao: 'Polvilho frito, brevidade, pão de queijo, rapadura.',
         comoEFeito: 'Tudo no fogão a lenha, com polvilho fresco, fubá moído na própria comunidade e rapadura artesanal. Receitas passadas de mães para filhas, sem conservantes. Caixa com 8 tipos diferentes.',
         preco: 'R$ 90 (caixa pequena)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/produto-quitandas-caixa.png'
       },
       {
         nome: 'Doce de marmelo',
         descricao: 'Marmelo da época em tacho de cobre, açúcar mascavo.',
         comoEFeito: 'Marmelo do quintal, açúcar mascavo e tempo lento — 4 horas em tacho de cobre, mexendo sem parar. O ponto de corte é determinado pela mestra. Embalado em vidros de 250g.',
         preco: 'R$ 28 (250g)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/comunidade-macuco.png'
       }
     ]
   },
@@ -263,14 +263,14 @@ window.COMUNIDADES = {
         descricao: 'Cardado e fiado em roca de pé, sem alvejante.',
         comoEFeito: 'Algodão crioulo cardado a mão e fiado em roca de pedal. Fio rolo natural, na cor original da fibra. Embalado em meadas para tear ou crochê.',
         preco: 'R$ 45 (meada)',
-        img: 'assets/img/tear-algodao.png'
+        img: 'assets/img/comunidade-corrego-do-rocha.png'
       },
       {
         nome: 'Tecido cru de algodão',
         descricao: 'Tear horizontal, trama justa, base para roupas e cobertas.',
         comoEFeito: 'Tecido em tear horizontal de chão, trama justa que dura décadas. Pode ser comprado em metro corrido ou pré-cortado. Pode ser tingido depois com cascas de árvore.',
         preco: 'R$ 95 (m linear)',
-        img: 'assets/img/tear-algodao.png'
+        img: 'assets/img/produto-pano-algodao.png'
       }
     ]
   },
@@ -305,21 +305,21 @@ window.COMUNIDADES = {
         descricao: 'Argila do território, queimada em forno a céu aberto.',
         comoEFeito: 'Argila extraída do território da comunidade, modelada à mão sem torno, secada à sombra por 1 semana e queimada em forno a céu aberto com lenha de cerrado. Cada panela é única e leva 1 semana para ficar pronta.',
         preco: 'A partir de R$ 120',
-        img: 'assets/img/ceramica-barro.png'
+        img: 'assets/img/produto-panela-barro.png'
       },
       {
         nome: 'Cesto de palha de banana',
         descricao: 'Palha seca da bananeira, costurada com fio de algodão.',
         comoEFeito: 'Folhas secas de bananeira cortadas em tiras longas, trançadas em rolos compridos e costuradas em espiral com fio de algodão. Resistente, leve e flexível.',
         preco: 'A partir de R$ 75',
-        img: 'assets/img/cestaria-palha-milho.png'
+        img: 'assets/img/comunidade-gravata.png'
       },
       {
         nome: 'Coberta de algodão',
         descricao: 'Tecida no tear de chão, padrão xadrez tradicional.',
         comoEFeito: 'Tear de chão (mais largo que o de pé), com fios crus e tingidos com cascas e raízes. Padrão xadrez tradicional do Vale. Durabilidade de décadas.',
         preco: 'A partir de R$ 480',
-        img: 'assets/img/tear-algodao.png'
+        img: 'assets/img/produto-pano-algodao.png'
       }
     ]
   },
@@ -356,14 +356,14 @@ window.COMUNIDADES = {
         descricao: 'Frutas do quintal em tacho aberto, sem conservantes.',
         comoEFeito: 'Frutas do quintal (goiaba, abóbora, mamão verde, leite), açúcar mascavo da região, tacho aberto. Receita transmitida há quatro gerações pela família. Embalado em pequenos potes de vidro.',
         preco: 'A partir de R$ 22 (200g)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/produto-quitandas-caixa.png'
       },
       {
         nome: 'Colares e pulseiras de sementes',
         descricao: 'Sementes nativas montadas em fios encerados.',
         comoEFeito: 'Sementes coletadas no cerrado (jequitibá, paineira, andu, sucupira), perfuradas à mão e montadas em fios encerados. Cada peça reúne 5-7 espécies diferentes.',
         preco: 'A partir de R$ 35',
-        img: 'assets/img/aldeia-quilombola.png'
+        img: 'assets/img/comunidade-mata-dois.png'
       }
     ]
   },
@@ -398,14 +398,14 @@ window.COMUNIDADES = {
         descricao: 'Milho crioulo plantado na comunidade, moído em pedra.',
         comoEFeito: 'Milho crioulo (variedade preservada por gerações) seco no paiol e moído em pedra de rio. Saco de 1kg com sabor e textura impossíveis no industrial.',
         preco: 'R$ 18 (1kg)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/comunidade-macuco.png'
       },
       {
         nome: 'Rapadura artesanal',
         descricao: 'Cana plantada no quintal, raspa de cobre, fogo lento.',
         comoEFeito: 'Cana de açúcar do quintal, suco extraído em moenda manual, cozido em tacho de cobre por 6 horas em fogo lento, batido até endurecer. Peça de 250g.',
         preco: 'R$ 15 (250g)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/produto-quitandas-caixa.png'
       }
     ]
   },
@@ -440,14 +440,14 @@ window.COMUNIDADES = {
         descricao: 'Variedades de feijão, milho e fava preservadas há gerações.',
         comoEFeito: 'Sementes guardadas em ciclos sucessivos pela comunidade — feijão de corda, milho crioulo, fava preta, andu. Embaladas em sachês de papel kraft com etiqueta da comunidade. Para plantio ou consumo.',
         preco: 'R$ 12 (sachê)',
-        img: 'assets/img/estrada-terra-vermelha.png'
+        img: 'assets/img/comunidade-mata-dois.png'
       },
       {
         nome: 'Plantas medicinais secas',
         descricao: 'Coleta sustentável no cerrado, secas à sombra.',
         comoEFeito: 'Folhas e raízes coletadas com saber tradicional (capim-cidreira, alecrim, arnica, carqueja), secas à sombra por 7-10 dias e embaladas em sachês individuais com instruções de uso.',
         preco: 'R$ 15 (sachê)',
-        img: 'assets/img/estrada-terra-vermelha.png'
+        img: 'assets/img/apoio-detalhe-oficio.png'
       }
     ]
   },
@@ -482,14 +482,14 @@ window.COMUNIDADES = {
         descricao: 'Madeira local, couro curtido, padrão da Marujada União.',
         comoEFeito: 'Tronco oco entalhado em madeira local, couro de boi curtido pela comunidade, lacração com cordas de algodão. Cada tambor é afinado pelo Sr. Marciano, mestre da Marujada União de Ribeirão da Folha. Tempo: 1 mês.',
         preco: 'A partir de R$ 520',
-        img: 'assets/img/tambor-congado.png'
+        img: 'assets/img/comunidade-alagadico.png'
       },
       {
         nome: 'Flauta artesanal de bambu',
         descricao: 'Bambu da região, afinada manualmente, 6 furos tradicionais.',
         comoEFeito: 'Bambu da nascente do córrego, cortado na fase certa da lua, seco por 30 dias e perfurado com 6 furos tradicionais. Afinada uma a uma pelos mestres da marujada.',
         preco: 'A partir de R$ 95',
-        img: 'assets/img/tambor-congado.png'
+        img: 'assets/img/roteiro-marujada.png'
       }
     ]
   },
@@ -524,21 +524,21 @@ window.COMUNIDADES = {
         descricao: 'Banana caturra secada ao sol, sem açúcar adicionado.',
         comoEFeito: 'Banana caturra madura, descascada e secada em varais ao sol natural por 5-7 dias. Sem açúcar adicionado. Embalada em pacotes de 200g.',
         preco: 'R$ 18 (200g)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/comunidade-santiago.png'
       },
       {
         nome: 'Marmelada artesanal',
         descricao: 'Marmelo do quintal, açúcar mascavo, panela de cobre.',
         comoEFeito: 'Marmelo do quintal, açúcar mascavo da região e cozimento lento de 4 horas em panela de cobre. Receita da Maria dos Anjos, transmitida pela mãe e avó. Embalado em vidros de 250g.',
         preco: 'R$ 32 (250g)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/produto-quitandas-caixa.png'
       },
       {
         nome: 'Geleias caseiras (variadas)',
         descricao: 'Frutas da safra, sem conservantes, vidros pequenos.',
         comoEFeito: 'Frutas da safra (goiaba, jabuticaba, manga, abacaxi), açúcar mascavo, sem conservantes nem corantes. Cozimento em fogão a lenha. Vidros de 150g e 250g.',
         preco: 'R$ 22 (250g)',
-        img: 'assets/img/quitandas.png'
+        img: 'assets/img/produto-quitandas-caixa.png'
       }
     ]
   }
