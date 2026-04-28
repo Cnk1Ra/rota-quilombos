@@ -2989,6 +2989,8 @@ p { font-size: 1rem; }
   flex-wrap: wrap;
 }
 
+.modal__catalogo-banner[hidden] { display: none !important; }
+
 .modal__catalogo-banner p {
   font-family: var(--serif);
   font-style: italic;
