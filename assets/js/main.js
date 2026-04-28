@@ -594,10 +594,14 @@
     document.body.style.overflow = 'hidden';
   }
 
-  // Conectar todos os triggers
-  document.querySelectorAll('[data-cotacao]').forEach((trigger) => {
+  // Conectar todos os triggers — captura na fase capture pra rodar ANTES
+  // do smooth-scroll handler (que também ouve em a[href^="#"])
+  function bindCotacaoTrigger(trigger) {
+    if (trigger.dataset.cotacaoBound === '1') return;
+    trigger.dataset.cotacaoBound = '1';
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopImmediatePropagation();
       openModal({
         context: trigger.dataset.context || 'roteiro',
         item: trigger.dataset.item || '',
@@ -605,8 +609,25 @@
         eyebrow: trigger.dataset.eyebrow,
         subtitle: trigger.dataset.subtitle,
       });
+    }, { capture: true });
+  }
+
+  document.querySelectorAll('[data-cotacao]').forEach(bindCotacaoTrigger);
+
+  // Delegação global pra qualquer botão data-cotacao adicionado dinamicamente
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-cotacao]');
+    if (!t || t.dataset.cotacaoBound === '1') return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    openModal({
+      context: t.dataset.context || 'roteiro',
+      item: t.dataset.item || '',
+      title: t.dataset.title,
+      eyebrow: t.dataset.eyebrow,
+      subtitle: t.dataset.subtitle,
     });
-  });
+  }, { capture: true });
 
   // Expose globally for inline use if needed
   window.RotaQuilombos = { openCotacao: openModal };
