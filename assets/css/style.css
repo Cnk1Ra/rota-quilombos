@@ -4160,14 +4160,11 @@ p { font-size: 1rem; }
   .produtos__grid { grid-template-columns: 1fr; }
 }
 
-/* Mobile menu — overlay full screen */
+/* Mobile menu — overlay full screen 100% opaco */
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(14,14,14,0.98), rgba(20,17,14,0.98)),
-    url('../img/padrao-adinkra.png') center/contain no-repeat;
-  background-blend-mode: multiply;
+  background: linear-gradient(180deg, #14110E 0%, #0E0E0E 100%);
   z-index: 200;
   display: none;
   flex-direction: column;
@@ -4175,6 +4172,16 @@ p { font-size: 1rem; }
   opacity: 0;
   transition: opacity 360ms var(--ease-out);
   overflow-y: auto;
+}
+
+.mobile-menu::before {
+  /* Adinkra como decoração, atrás do conteúdo */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../img/padrao-adinkra.png') center/contain no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 .mobile-menu.is-open {
