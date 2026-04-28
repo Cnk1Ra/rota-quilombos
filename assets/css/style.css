@@ -2702,9 +2702,10 @@ p { font-size: 1rem; }
 
 @media (max-width: 767px) {
   .container { padding: 0 var(--space-4); }
-  .nav, .header__cta { display: none; }
+  .nav { display: none; }
+  .header__cta { gap: var(--space-3); }
+  .header__cta .btn { display: none; }
   .menu-toggle { display: flex; }
-  .header__cta .btn--gold { display: inline-flex; }
 
   .hero { min-height: 92vh; }
   .hero__title { font-size: clamp(2.2rem, 9vw, 3rem); }
