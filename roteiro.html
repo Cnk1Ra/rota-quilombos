@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Roteiro · Rota dos Quilombos</title>
+  <meta name="description" content="Roteiro de turismo quilombola no Médio Jequitinhonha." id="pageDesc" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="brand">
+        <span class="brand__name">Rota dos <em>Quilombos</em></span>
+        <span class="brand__tagline">Médio Jequitinhonha · MG</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html#comunidades" class="nav__link">Comunidades</a></li>
+          <li><a href="roteiros.html" class="nav__link">Roteiros</a></li>
+          <li><a href="index.html#saberes" class="nav__link">Saberes</a></li>
+          <li><a href="index.html#para-quem" class="nav__link">Para Empresas</a></li>
+          <li><a href="index.html#contato" class="nav__link">Contato</a></li>
+        </ul>
+        <div class="lang">
+          <span class="lang__option lang__option--active">PT</span>
+          <span class="lang__divider">|</span>
+          <span class="lang__option">EN</span>
+        </div>
+      </nav>
+      <div class="header__cta">
+        <button type="button" class="btn btn--gold" id="headerCotar" data-cotacao data-context="roteiro">Cotar Roteiro</button>
+        <button class="menu-toggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="roteiroRoot"></main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="padding-top:0; border-top:none;">
+        <span>© 2026 Rota dos Quilombos · Nzinga Turismo</span>
+        <a href="roteiros.html" style="color: var(--dourado-fosco); font-size: 0.85rem;">← Ver todos os roteiros</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/roteiros.js"></script>
+  <script src="data/comunidades.js"></script>
+  <script>
+    (function () {
+      const root = document.getElementById('roteiroRoot');
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      const r = window.ROTEIROS && window.ROTEIROS[slug];
+
+      if (!r) {
+        root.innerHTML = `
+          <section class="page-hero">
+            <div class="page-hero__bg" style="background:linear-gradient(135deg,#1A1612,#0E0E0E);"></div>
+            <div class="container page-hero__content">
+              <p class="breadcrumb"><a href="index.html">Início</a> · Roteiro não encontrado</p>
+              <h1 class="page-hero__title">Roteiro não encontrado</h1>
+            </div>
+          </section>
+          <section class="section section--osso">
+            <div class="container" style="text-align:center;">
+              <a href="roteiros.html" class="btn btn--outline">← Ver todos os roteiros</a>
+            </div>
+          </section>
+        `;
+        return;
+      }
+
+      document.getElementById('pageTitle').textContent = `${r.nome} · Rota dos Quilombos`;
+      document.getElementById('pageDesc').setAttribute('content', `${r.nome} — ${r.duracao}. ${r.subtitulo}`);
+
+      const itinerarioHTML = (r.itinerario || []).map((it, i) => `
+        <li>
+          <span class="feature-list__num">${String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <p class="feature-list__title">${it.periodo}</p>
+            <p class="feature-list__text">${it.atividades}</p>
+          </div>
+        </li>
+      `).join('');
+
+      const incluiHTML = (r.inclui || []).map((i) => `<li>${i}</li>`).join('');
+      const naoIncluiHTML = (r.naoInclui || []).map((i) => `<li>${i}</li>`).join('');
+
+      const comunidadesChips = (r.comunidades || []).map((c) =>
+        `<span class="roteiro-chip">${c}</span>`
+      ).join('');
+
+      const destaqueHTML = r.destaque
+        ? `<span class="roteiro-destaque">${r.destaque}</span>`
+        : '';
+
+      root.innerHTML = `
+        <!-- HERO DO ROTEIRO -->
+        <section class="page-hero roteiro-hero">
+          <div class="page-hero__bg">
+            <img src="${r.img}" alt="${r.nome}" />
+          </div>
+          <div class="container page-hero__content">
+            <p class="breadcrumb"><a href="index.html">Início</a> · <a href="roteiros.html">Roteiros</a> · ${r.duracaoCurta}</p>
+            ${destaqueHTML}
+            <h1 class="page-hero__title">${r.nome}</h1>
+            <p class="page-hero__subtitle">${r.subtitulo}</p>
+          </div>
+        </section>
+
+        <!-- SUMÁRIO RÁPIDO -->
+        <section class="section section--osso roteiro-resumo">
+          <div class="container">
+            <div class="resumo-grid">
+              <div class="resumo-bloco">
+                <div class="resumo-meta">
+                  <span class="resumo-meta__label">Duração</span>
+                  <span class="resumo-meta__value">${r.duracao}</span>
+                </div>
+                <div class="resumo-meta">
+                  <span class="resumo-meta__label">Município</span>
+                  <span class="resumo-meta__value">${r.municipio}</span>
+                </div>
+                <div class="resumo-meta">
+                  <span class="resumo-meta__label">Grupo</span>
+                  <span class="resumo-meta__value">${r.grupo}</span>
+                </div>
+                <div class="resumo-meta">
+                  <span class="resumo-meta__label">Melhor época</span>
+                  <span class="resumo-meta__value">${r.melhorEpoca}</span>
+                </div>
+                <div class="resumo-meta">
+                  <span class="resumo-meta__label">Nível</span>
+                  <span class="resumo-meta__value">${r.nivel}</span>
+                </div>
+              </div>
+              <aside class="resumo-cta">
+                <span class="resumo-cta__label">Investimento</span>
+                <span class="resumo-cta__price">${r.preco}</span>
+                <p class="resumo-cta__note">Por pessoa · grupos privativos sob consulta</p>
+                <button class="btn btn--gold btn--icon btn--large" data-cotacao
+                  data-context="roteiro"
+                  data-item="${r.nome} (${r.duracao})"
+                  data-eyebrow="Solicitar Cotação"
+                  data-title="Cotar <em>${r.nome}</em>"
+                  data-subtitle="Conte a data desejada e o tamanho do grupo. Respondemos em até 1 dia útil.">Solicitar Cotação</button>
+                <a href="https://wa.me/5531900000000?text=Olá! Tenho interesse no roteiro ${encodeURIComponent(r.nome)}" target="_blank" class="resumo-cta__whats">ou fale direto pelo WhatsApp →</a>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <!-- DESCRIÇÃO -->
+        <section class="section section--osso">
+          <div class="container container--narrow">
+            <span class="eyebrow">Sobre o roteiro</span>
+            <p class="prose" style="font-size: 1.15rem; line-height: 1.7;">${r.descricao}</p>
+            ${comunidadesChips ? `
+              <div class="roteiro-chips">
+                <span class="roteiro-chips__label">Comunidades visitadas</span>
+                <div class="roteiro-chips__list">${comunidadesChips}</div>
+              </div>
+            ` : ''}
+          </div>
+        </section>
+
+        <!-- ITINERÁRIO -->
+        ${itinerarioHTML ? `
+        <section class="section section--escuro">
+          <div class="container">
+            <div class="comunidades__header" style="max-width: 720px;">
+              <span class="eyebrow eyebrow--light">Itinerário</span>
+              <h2 class="comunidades__title">Como vai ser<br /><em>cada parte do dia.</em></h2>
+            </div>
+            <ul class="feature-list" style="margin-top: var(--space-8);">${itinerarioHTML}</ul>
+          </div>
+        </section>
+        ` : ''}
+
+        <!-- O QUE INCLUI -->
+        <section class="section section--osso">
+          <div class="container">
+            <div class="inclui-grid">
+              <div>
+                <span class="eyebrow" style="color: var(--verde-folha);">O que está incluído</span>
+                <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: var(--space-5);">Tudo isso vem junto.</h3>
+                <ul class="check-list">${incluiHTML}</ul>
+              </div>
+              ${naoIncluiHTML ? `
+              <div>
+                <span class="eyebrow" style="color: var(--terracota);">Não incluído</span>
+                <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: var(--space-5);">Cuida você.</h3>
+                <ul class="x-list">${naoIncluiHTML}</ul>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="cta-final" id="cotacao">
+          <div class="container cta-final__inner">
+            <h2 class="cta-final__title">Pronto para viver<br /><em>${r.nome}?</em></h2>
+            <p class="cta-final__subtitle">${r.preco} · ${r.duracao} · ${r.municipio}</p>
+            <button class="btn btn--gold btn--large btn--icon" data-cotacao
+              data-context="roteiro"
+              data-item="${r.nome} (${r.duracao})"
+              data-eyebrow="Solicitar Cotação"
+              data-title="Cotar <em>${r.nome}</em>"
+              data-subtitle="Vivência guiada por Agente Local. Conte a data desejada e quantas pessoas.">Solicitar Cotação</button>
+          </div>
+        </section>
+
+        <!-- OUTROS ROTEIROS -->
+        <section class="section section--osso">
+          <div class="container">
+            <div class="comunidades__header" style="max-width: 680px;">
+              <span class="eyebrow">Outros caminhos</span>
+              <h2 class="section-title">Conheça os <em>outros roteiros</em>.</h2>
+            </div>
+            <div style="text-align:center; margin-top: var(--space-6);">
+              <a href="roteiros.html" class="btn btn--outline">Ver todos os 10 roteiros →</a>
+            </div>
+          </div>
+        </section>
+      `;
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

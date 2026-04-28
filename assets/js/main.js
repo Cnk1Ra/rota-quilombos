@@ -444,18 +444,9 @@
   // ----------------------------------------------------------
   const WHATSAPP = '5531900000000'; // placeholder — Lupri define o número real
 
-  const ROTEIROS_DISPONIVEIS = [
-    { nome: 'Vivência do Algodão',     meta: '1 dia · R$ 280' },
-    { nome: 'Berilo Ancestral',        meta: '2 dias · R$ 720' },
-    { nome: 'Caminho dos Tamborzeiros', meta: '2 dias · R$ 690' },
-    { nome: 'Mãos de Palha e Barro',   meta: '1 dia · R$ 320' },
-    { nome: 'Mesa Quilombola',         meta: '1 dia · R$ 260' },
-    { nome: 'Marujada do Alagadiço',   meta: '2 dias · R$ 680' },
-    { nome: 'Caminho do Macuco',       meta: '2 dias · R$ 690' },
-    { nome: 'Festa do Rosário (Out)',  meta: '3 dias · R$ 1.450' },
-    { nome: 'Rota Completa do Vale',   meta: '5 dias · R$ 2.890' },
-    { nome: 'Imersão Pedagógica B2B',  meta: 'Grupos · sob consulta' }
-  ];
+  // Picker de roteiros foi substituído por páginas dedicadas (roteiro.html?slug=X)
+  // Modal agora abre só com form — quando aberto sem item específico, mostra link
+  // pra catálogo de roteiros.
 
   function buildModal() {
     if (document.getElementById('cotacaoModal')) return;
@@ -464,21 +455,11 @@
     overlay.id = 'cotacaoModal';
     overlay.setAttribute('aria-hidden', 'true');
 
-    const roteirosBlock = `
-      <div class="modal__roteiros-section" data-modal-roteiros>
-        <span class="modal__roteiros-label">Comece escolhendo um roteiro</span>
-        <div class="modal__roteiros">
-          ${ROTEIROS_DISPONIVEIS.map((r) => `
-            <button type="button" class="modal__roteiro-pick" data-roteiro="${r.nome}">
-              <span class="modal__roteiro-name">${r.nome}</span>
-              <span class="modal__roteiro-meta">${r.meta}</span>
-            </button>
-          `).join('')}
-          <button type="button" class="modal__roteiro-pick modal__roteiro-pick--custom" data-roteiro="Personalizar">
-            <span class="modal__roteiro-name">✨ Personalizar meu roteiro</span>
-            <span class="modal__roteiro-meta">A gente desenha junto</span>
-          </button>
-        </div>
+    // Banner pra catálogo (mostra quando user abre modal sem roteiro específico)
+    const catalogoBanner = `
+      <div class="modal__catalogo-banner" data-modal-catalogo hidden>
+        <p>Quer ver todos os roteiros com fotos, itinerário e o que está incluído?</p>
+        <a href="roteiros.html" class="modal__catalogo-link">Ver os 10 roteiros →</a>
       </div>
     `;
 
@@ -491,7 +472,7 @@
           <p class="modal__subtitle" data-modal-subtitle>Conte um pouco sobre o que você procura. Respondemos em até 1 dia útil.</p>
         </div>
         <form class="modal__body" data-modal-form>
-          ${roteirosBlock}
+          ${catalogoBanner}
           <div class="modal__form">
             <div class="modal__field modal__field--full">
               <label for="cot-nome">Nome completo</label>
@@ -535,23 +516,6 @@
     `;
     document.body.appendChild(overlay);
 
-    // Bind roteiro picker
-    overlay.querySelectorAll('.modal__roteiro-pick').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        overlay.querySelectorAll('.modal__roteiro-pick').forEach((b) => b.classList.remove('is-selected'));
-        btn.classList.add('is-selected');
-        const r = btn.dataset.roteiro;
-        const msgField = overlay.querySelector('#cot-mensagem');
-        if (msgField && (msgField.value === '' || /^Tenho interesse/.test(msgField.value))) {
-          msgField.value = r === 'Personalizar'
-            ? 'Tenho interesse em uma vivência personalizada. '
-            : `Tenho interesse no roteiro "${r}". `;
-        }
-        // Atualiza dataset pra usar no WhatsApp
-        overlay.dataset.item = r;
-      });
-    });
-
     const close = () => {
       overlay.classList.remove('is-open');
       overlay.setAttribute('aria-hidden', 'true');
@@ -588,6 +552,20 @@
     if (title) overlay.querySelector('[data-modal-title]').innerHTML = title;
     if (eyebrow) overlay.querySelector('[data-modal-eyebrow]').textContent = eyebrow;
     if (subtitle) overlay.querySelector('[data-modal-subtitle]').textContent = subtitle;
+
+    // Pré-preenche mensagem se há um item específico
+    const msgField = overlay.querySelector('#cot-mensagem');
+    if (msgField && item) {
+      msgField.value = `Tenho interesse em: ${item}. `;
+    } else if (msgField) {
+      msgField.value = '';
+    }
+
+    // Mostra banner do catálogo só se NÃO tem item específico
+    const catalogoBanner = overlay.querySelector('[data-modal-catalogo]');
+    if (catalogoBanner) {
+      catalogoBanner.hidden = !!item;
+    }
 
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
