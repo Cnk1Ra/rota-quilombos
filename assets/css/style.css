@@ -402,6 +402,7 @@ p { font-size: 1rem; }
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   color: var(--branco-osso);
@@ -4158,17 +4159,21 @@ p { font-size: 1rem; }
   .produtos__grid { grid-template-columns: 1fr; }
 }
 
-/* Mobile menu open state */
+/* Mobile menu — overlay full screen */
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background: var(--preto-profundo);
-  z-index: 99;
+  background:
+    linear-gradient(180deg, rgba(14,14,14,0.98), rgba(20,17,14,0.98)),
+    url('../img/padrao-adinkra.png') center/contain no-repeat;
+  background-blend-mode: multiply;
+  z-index: 200;
   display: none;
   flex-direction: column;
   padding: var(--space-16) var(--space-5) var(--space-8);
   opacity: 0;
-  transition: opacity 320ms var(--ease-out);
+  transition: opacity 360ms var(--ease-out);
+  overflow-y: auto;
 }
 
 .mobile-menu.is-open {
@@ -4176,10 +4181,42 @@ p { font-size: 1rem; }
   opacity: 1;
 }
 
+.mobile-menu__close {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(244, 239, 230, 0.1);
+  border: 1px solid rgba(244, 239, 230, 0.2);
+  color: var(--branco-osso);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.mobile-menu__brand {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--branco-osso);
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-menu__brand em { color: var(--dourado-fosco); font-style: italic; }
+
 .mobile-menu__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-2);
+  position: relative;
+  z-index: 1;
+  flex: 1;
 }
 
 .mobile-menu__list a {
@@ -4187,6 +4224,97 @@ p { font-size: 1rem; }
   font-size: 1.75rem;
   color: var(--branco-osso);
   font-weight: 500;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgba(244, 239, 230, 0.08);
+  transition: all 240ms var(--ease-out);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-.mobile-menu__list a:hover { color: var(--dourado-fosco); }
+.mobile-menu__list a::after {
+  content: "→";
+  margin-left: auto;
+  color: var(--dourado-fosco);
+  opacity: 0.5;
+  transition: all 240ms var(--ease-out);
+}
+
+.mobile-menu__list a:hover,
+.mobile-menu__list a:active {
+  color: var(--dourado-fosco);
+  padding-left: var(--space-3);
+}
+
+.mobile-menu__list a:hover::after,
+.mobile-menu__list a:active::after {
+  opacity: 1;
+  margin-left: auto;
+  transform: translateX(4px);
+}
+
+.mobile-menu__cta {
+  margin-top: var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
+.mobile-menu__cta .btn { width: 100%; }
+
+.mobile-menu__lang {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  margin-top: var(--space-5);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: rgba(244, 239, 230, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* Hamburguer X animation */
+.menu-toggle.is-active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle.is-active span:nth-child(2) { opacity: 0; }
+.menu-toggle.is-active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* Botão flutuante "voltar ao topo" */
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--preto-profundo);
+  color: var(--dourado-fosco);
+  border: 1px solid rgba(200, 168, 90, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out), background 240ms var(--ease-out);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--dourado-fosco);
+  color: var(--preto-profundo);
+}
+
+.back-to-top svg { width: 18px; height: 18px; }
+
+/* Em mobile, deslocar pra não bater na barra sticky de cotação */
+@media (max-width: 767px) {
+  .back-to-top { bottom: 80px; }
+}

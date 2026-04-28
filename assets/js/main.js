@@ -97,26 +97,101 @@
   }, { passive: true });
 
   // ----------------------------------------------------------
-  // MOBILE MENU
+  // MOBILE MENU — universal (cria dinamicamente em qualquer página)
   // ----------------------------------------------------------
-  const menuToggle = document.querySelector('.menu-toggle');
-  const mobileMenu = document.getElementById('mobileMenu');
+  function buildMobileMenu() {
+    if (document.getElementById('mobileMenu')) return document.getElementById('mobileMenu');
 
-  if (menuToggle && mobileMenu) {
+    // Pega itens do nav existente
+    const navLinks = document.querySelectorAll('.nav__list a');
+    const linksHTML = Array.from(navLinks).map((a) =>
+      `<a href="${a.href}">${a.textContent.trim()}</a>`
+    ).join('');
+
+    // Sempre adiciona link pra home se não tiver
+    const hasHome = Array.from(navLinks).some((a) => /^index\.html$|\/$/.test(a.getAttribute('href') || ''));
+    const homeHTML = !hasHome ? '<a href="index.html">Início</a>' : '';
+
+    const menu = document.createElement('div');
+    menu.className = 'mobile-menu';
+    menu.id = 'mobileMenu';
+    menu.setAttribute('aria-hidden', 'true');
+    menu.innerHTML = `
+      <button class="mobile-menu__close" aria-label="Fechar menu">×</button>
+      <div class="mobile-menu__brand">Rota dos <em>Quilombos</em></div>
+      <nav class="mobile-menu__list">
+        ${homeHTML}
+        ${linksHTML}
+      </nav>
+      <div class="mobile-menu__cta">
+        <button type="button" class="btn btn--gold" data-cotacao data-context="roteiro">Solicitar Cotação</button>
+      </div>
+      <div class="mobile-menu__lang">
+        <span style="color: var(--dourado-fosco);">PT</span>
+        <span>·</span>
+        <span>EN</span>
+      </div>
+    `;
+    document.body.appendChild(menu);
+    return menu;
+  }
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  if (menuToggle) {
+    const mobileMenu = buildMobileMenu();
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('is-open');
+      menuToggle.classList.remove('is-active');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
     menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('is-open');
-      const isOpen = mobileMenu.classList.contains('is-open');
-      menuToggle.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      const opening = !mobileMenu.classList.contains('is-open');
+      mobileMenu.classList.toggle('is-open', opening);
+      menuToggle.classList.toggle('is-active', opening);
+      menuToggle.setAttribute('aria-expanded', opening);
+      mobileMenu.setAttribute('aria-hidden', !opening);
+      document.body.style.overflow = opening ? 'hidden' : '';
     });
+
+    mobileMenu.querySelector('.mobile-menu__close').addEventListener('click', closeMenu);
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('is-open');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
     });
   }
+
+  // ----------------------------------------------------------
+  // BOTÃO FLUTUANTE "VOLTAR AO TOPO"
+  // ----------------------------------------------------------
+  const backTop = document.createElement('button');
+  backTop.className = 'back-to-top';
+  backTop.setAttribute('aria-label', 'Voltar ao topo');
+  backTop.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`;
+  document.body.appendChild(backTop);
+
+  backTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  let backTopTicking = false;
+  function updateBackTop() {
+    if (window.scrollY > 600) backTop.classList.add('is-visible');
+    else backTop.classList.remove('is-visible');
+    backTopTicking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!backTopTicking) {
+      window.requestAnimationFrame(updateBackTop);
+      backTopTicking = true;
+    }
+  }, { passive: true });
 
   // ----------------------------------------------------------
   // INTERSECTION OBSERVER (fade-in + stagger)
